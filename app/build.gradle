@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.example.zch.imspeak"
-        minSdkVersion 19
-        targetSdkVersion 22
+        minSdkVersion 8
+        targetSdkVersion 19
         versionCode 1
         versionName "1.0"
     }
@@ -22,8 +22,11 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
-    compile "org.igniterealtime.smack:smack-android-extensions:4.1.0"
-    compile "org.igniterealtime.smack:smack-experimental:4.1.0"
-    compile "org.igniterealtime.smack:smack-tcp:4.1.0"
-    compile "org.igniterealtime.smack:smack-android:4.1.0"
+    compile 'org.igniterealtime.smack:smack-android-extensions:4.1.0'
+    compile 'org.igniterealtime.smack:smack-experimental:4.1.0'
+    compile 'org.igniterealtime.smack:smack-tcp:4.1.0'
+    compile 'org.igniterealtime.smack:smack-android:4.1.0'
+    compile files('src/main/libs/eventbus.jar')
+    compile files('src/main/libs/xUtils-2.6.14.jar')
+    compile files('src/main/libs/gson-2.2.4.jar')
 }
