@@ -24,5 +24,5 @@ public class MainActivity extends ActionBarActivity {
         super.onDestroy();
     }
 
-    //menu现在开发基本用不到了
+    //menu 现在应用基本都不用了
 }
