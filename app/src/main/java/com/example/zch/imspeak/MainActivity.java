@@ -14,5 +14,10 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
     }
 
-   //menu现在开发基本用不到了
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    //menu现在开发基本用不到了
 }
