@@ -19,5 +19,10 @@ public class MainActivity extends ActionBarActivity {
         super.onResume();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
     //menu现在开发基本用不到了
 }
