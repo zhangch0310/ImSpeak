@@ -24,5 +24,5 @@ public class MainActivity extends ActionBarActivity {
         super.onDestroy();
     }
 
-    //menu ÏÖÔÚÓ¦ÓÃ»ù±¾¶¼²»ÓÃÁË
+    //menu ç°åœ¨åº”ç”¨åŸºæœ¬éƒ½ä¸ç”¨äº†,èƒ½åŠ ä¸Šä¸­æ–‡äº†å—
 }
