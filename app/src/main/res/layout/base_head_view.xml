@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:background="@null" 
         android:gravity="center_vertical"
-        android:drawableLeft="@drawable/back"/>
+        android:drawableLeft="@mipmap/back"/>
 
     <TextView 
         android:id="@+id/head_tv_title"

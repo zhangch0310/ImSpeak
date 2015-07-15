@@ -58,8 +58,8 @@ public class BitmapHelp {
 	}
 
 	private static void configDefaultInfo() {
-		bitmapUtils.configDefaultLoadingImage(R.drawable.ic_launcher);
-		bitmapUtils.configDefaultLoadFailedImage(R.drawable.ic_launcher);
+		bitmapUtils.configDefaultLoadingImage(R.mipmap.ic_launcher);
+		bitmapUtils.configDefaultLoadFailedImage(R.mipmap.ic_launcher);
 		bitmapUtils.configDefaultBitmapConfig(Bitmap.Config.RGB_565);
 	}
 
