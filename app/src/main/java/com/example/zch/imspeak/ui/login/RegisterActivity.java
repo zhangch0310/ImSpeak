@@ -35,6 +35,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void init() {
+
         mBtnOk.setOnClickListener(this);
     }
 
