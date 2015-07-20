@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,18 +16,9 @@ import com.example.zch.imspeak.R;
 import com.example.zch.imspeak.base.BaseActivity;
 import com.example.zch.imspeak.service.SmackConnection;
 import com.example.zch.imspeak.service.SmackService;
-import com.example.zch.imspeak.smack.UserService;
 import com.example.zch.imspeak.ui.MainActivity;
-import com.example.zch.imspeak.utils.BambooCallBackAdapter;
 import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.http.RequestParams;
-import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.view.annotation.ViewInject;
-
-import org.jivesoftware.smack.SmackException;
-import org.jivesoftware.smack.XMPPException;
-
-import java.io.IOException;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
@@ -41,7 +33,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @ViewInject(R.id.login_tv_forgetPwd)
     private TextView mTvForgetPwd;
 
-    private final String domain = "im.littledonkey.com";
+    private final String domain = "@im.littledonkey.com";
 
     @Override
     public int getlayoutResID() {
@@ -51,6 +43,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (SmackService.getState().equals(SmackConnection.ConnectionState.DISCONNECTED)){
+
+        }
 
         ViewUtils.inject(this);
 
@@ -75,8 +70,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_btn_ok:
-                this.login(mEtName.getText().toString()+domain, mEtPwd.getText().toString());
                 toActivity(MainActivity.class);
+                this.login(mEtName.getText().toString()+domain, mEtPwd.getText().toString());
                 break;
             case R.id.login_tv_register:
                 toActivity(RegisterActivity.class);
@@ -86,9 +81,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void login(String userName, String passwor) {
         if (!verifyJId(userName)) {
+            Log.i("Login","用户名不合法");
             return;
         }
-        if (!SmackService.getState().equals(SmackConnection.ConnectionState.DISCONNECTED)) {
+        if (!SmackService.getState().equals(SmackConnection.ConnectionState.CONNECTED)) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             preferences.edit()
                     .putString("xmppUserName", userName)

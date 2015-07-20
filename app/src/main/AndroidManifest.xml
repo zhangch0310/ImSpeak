@@ -30,6 +30,11 @@
             android:name=".ui.login.RegisterActivity"
             android:label="@string/title_activity_register" >
         </activity>
+        <service
+            android:name=".service.SmackService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
     </application>
 
 </manifest>
