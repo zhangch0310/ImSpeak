@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.zch.imspeak.R;
 import com.example.zch.imspeak.base.BaseActivity;
 import com.example.zch.imspeak.ui.MainActivity;
+import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import org.jivesoftware.smack.SmackException;
@@ -43,6 +44,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ViewUtils.inject(this);
         init();
 
     }
@@ -57,7 +59,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mTvRegister.setOnClickListener(this);
         mTvForgetPwd.setOnClickListener(this);
     }
-
 
     public void onClick(View v) {
         switch (v.getId()) {

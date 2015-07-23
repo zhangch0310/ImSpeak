@@ -7,6 +7,8 @@ import android.os.Environment;
 import com.example.zch.imspeak.R;
 import com.lidroid.xutils.BitmapUtils;
 
+import java.io.File;
+
 /***
  * 用于管理缓存对象 为了是整个应用的缓存都指向同一个位置
  * 
@@ -54,6 +56,10 @@ public class BitmapHelp {
 				+ appContext.getString(R.string.dir)
 				+ appContext.getString(R.string.app_dir)
 				+ appContext.getString(R.string.cache);
+		File file = new File(root);
+		if(!file.exists()){
+			file.mkdirs();
+		}
 		return root;
 	}
 
