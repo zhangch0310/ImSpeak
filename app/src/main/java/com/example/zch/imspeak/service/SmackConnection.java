@@ -17,7 +17,6 @@ import org.jivesoftware.smack.chat.ChatManagerListener;
 import org.jivesoftware.smack.chat.ChatMessageListener;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Presence;
-import org.jivesoftware.smack.roster.RosterEntry;
 import org.jivesoftware.smack.roster.RosterListener;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
@@ -42,7 +41,7 @@ public class SmackConnection implements ConnectionListener, ChatManagerListener,
     private final Context applicationContext;
     private final String password;
     private final String userName;
-    private final String serviceName;
+    private final String serviceName = "im.littledonkey.com";
 
     private XMPPTCPConnection xmpptcpConnection;
     private List<String> roster;
@@ -51,17 +50,17 @@ public class SmackConnection implements ConnectionListener, ChatManagerListener,
     public SmackConnection(Context context) {
         applicationContext = context.getApplicationContext();
         password = PreferenceManager.getDefaultSharedPreferences(context).getString("xmppPassword", null);
-        String jid = PreferenceManager.getDefaultSharedPreferences(context).getString("xmppUserName", null);
-        userName = jid.split("@")[0];
-        serviceName = jid.split("@")[1];
+        userName = PreferenceManager.getDefaultSharedPreferences(context).getString("xmppUserName", null);
     }
 
     public void connectServer() throws IOException, XMPPException, SmackException {
-        Log.i(TAG, "connect()");
-        Log.i(TAG, "Get connected()");
+        Log.i(TAG, ">>>>>>>>>>>>>>>>Get connected()<<<<<<<<<<<<<<<");
         XMPPTCPConnectionConfiguration.Builder builder = XMPPTCPConnectionConfiguration.builder();
         builder.setServiceName(serviceName);
+        builder.setHost(serviceName);
+        builder.setPort(5222);
         builder.setUsernameAndPassword(userName, password);
+        builder.setConnectTimeout(3000);
 
         xmpptcpConnection = new XMPPTCPConnection(builder.build());
         xmpptcpConnection.addConnectionListener(this);
@@ -71,7 +70,7 @@ public class SmackConnection implements ConnectionListener, ChatManagerListener,
         PingManager.setDefaultPingInterval(600);
         PingManager pingManager = PingManager.getInstanceFor(xmpptcpConnection);
         pingManager.registerPingFailedListener(this);
-        //setupSendMessageReceiver();
+        setupSendMessageReceiver();
         ChatManager.getInstanceFor(xmpptcpConnection).addChatListener(this);
     }
 
